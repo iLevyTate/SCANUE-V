@@ -1,36 +1,55 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { cn } from "@/utils/ui";
 
 const pageVariants = {
   initial: {
     opacity: 0,
     y: 20,
   },
-  in: {
+  animate: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0.1, 0.25, 1.0],
+      staggerChildren: 0.1,
+    },
   },
-  out: {
+  exit: {
     opacity: 0,
     y: -20,
+    transition: {
+      duration: 0.2,
+      ease: [0.25, 0.1, 0.25, 1.0],
+    },
   },
-};
-
-const pageTransition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.5,
 };
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={pathname}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageVariants}
+        transition={{
+          duration: isReducedMotion ? 0 : 0.3,
+          ease: [0.25, 0.1, 0.25, 1.0],
+        }}
+        className={cn("min-h-screen")}
+        data-testid="page-transition"
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }

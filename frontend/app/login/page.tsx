@@ -1,17 +1,15 @@
+"use client";
+
 import { useState } from "react";
-import { motion } from "framer-motion";
-// import { User, Lock, ArrowRight } from 'lucide-react'
-import { User, Lock } from "lucide-react";
+import { User, Lock, ArrowRight } from "lucide-react";
 import Link from "next/link";
-/* import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { WavyBackground } from '../../components/ui/wavy-background' */
+import { Input } from "@/components/ui/input";
+import { GradientButton } from "@/components/ui/gradient-button";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 export default function LoginPage() {
-  // const [email, setEmail] = useState('')
-  const email = useState("");
-  // const [password, setPassword] = useState('')
-  const password = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,54 +18,68 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4">
-      {/*<WavyBackground className="absolute inset-0" />*/}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md rounded-3xl bg-gray-800 bg-opacity-80 p-8 shadow-xl backdrop-blur-md"
-      >
-        <h2 className="mb-6 text-center text-3xl font-bold text-white">Login to SCANUE-V</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="relative">
-            {/*<Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400"
-              required
-            />*/}
-            <User
-              className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-300"
-              size={18}
-            />
+    <WavyBackground
+      className="relative"
+      colors={["#818cf8", "#c084fc", "#38bdf8"]}
+      waveOpacity={0.2}
+      blur={8}
+      speed="slow"
+    >
+      <main className="flex flex-col items-center justify-center flex-1 p-4 sm:p-8">
+        <div className="w-full max-w-md p-8 space-y-8 text-center shadow-xl rounded-3xl bg-white/80 backdrop-blur-sm sm:p-12">
+          <h1 className="text-4xl font-bold text-transparent bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text sm:text-5xl">
+            Login
+          </h1>
+          <p className="text-xl text-gray-700 dark:text-gray-300">
+            Sign in to access your SCANUEV account
+          </p>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="relative">
+              <Input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-10 rounded-full"
+                required
+              />
+              <User
+                className="absolute text-blue-500 transform -translate-y-1/2 left-3 top-1/2"
+                size={18}
+              />
+            </div>
+            <div className="relative">
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-10 rounded-full"
+                required
+              />
+              <Lock
+                className="absolute text-blue-500 transform -translate-y-1/2 left-3 top-1/2"
+                size={18}
+              />
+            </div>
+            <GradientButton type="submit">
+              <span className="flex items-center justify-center">
+                Sign In
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </span>
+            </GradientButton>
+          </form>
+          <div className="mt-6 text-center">
+            <Link
+              href="/signup"
+              className="text-transparent bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text hover:from-blue-600 hover:to-purple-700"
+            >
+              Don&apos;t have an account? Sign up
+            </Link>
           </div>
-          <div className="relative">
-            {/*<Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400"
-              required
-            />*/}
-            <Lock
-              className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-300"
-              size={18}
-            />
-          </div>
-          {/* <Button type="submit" className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-            Login <ArrowRight className="ml-2" size={18} />
-          </Button> */}
-        </form>
-        <div className="mt-6 text-center">
-          <Link href="/signup" className="text-blue-400 hover:text-blue-300 hover:underline">
-            Don&apos;t have an account? Sign up
-          </Link>
         </div>
-      </motion.div>
-    </div>
+      </main>
+    </WavyBackground>
   );
 }

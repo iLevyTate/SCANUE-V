@@ -3,8 +3,11 @@
 Dockerfile
 .dockerignore
 node_modules
-.env
+.next
 .git
+.gitignore
+README.md
+.env
 logs
 *.log
 npm-debug.log*

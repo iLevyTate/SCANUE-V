@@ -1,94 +1,39 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-// import { User, Mail, Key, Save } from 'lucide-react'
-import { User, Mail, Key } from "lucide-react";
-/* import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { WavyBackground } from '../../components/ui/wavy-background' */
+"use client";
+
+import { GradientButton } from "@/components/ui/gradient-button";
+import { User } from "lucide-react";
+import { WavyBackground } from "@/components/ui/wavy-background";
 
 export default function AccountPage() {
-  // const [name, setName] = useState('John Doe')
-  const name = useState("John Doe");
-  // const [email, setEmail] = useState('john.doe@example.com')
-  const email = useState("john.doe@example.com");
-  // const [password, setPassword] = useState('')
-  const password = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle the account update logic
-    console.log("Account update attempt with:", { name, email, password });
-  };
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4">
-      {/*<WavyBackground className="absolute inset-0" />*/}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md rounded-3xl bg-gray-800 bg-opacity-80 p-8 shadow-xl backdrop-blur-md"
-      >
-        <h2 className="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-center text-3xl font-bold text-transparent">
-          Your SCANUE-V Account
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            {/*<Label htmlFor="name" className="text-gray-300">Name</Label>*/}
-            <div className="relative">
-              {/*<Input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400"
-                required
-              />*/}
-              <User
-                className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400"
-                size={18}
-              />
+    <WavyBackground
+      className="relative"
+      colors={["#c084fc", "#38bdf8", "#818cf8"]}
+      waveOpacity={0.25}
+      blur={12}
+    >
+      <main className="flex flex-1 flex-col items-center justify-center p-4 sm:p-8">
+        <div className="w-full max-w-2xl space-y-8 rounded-3xl bg-white/80 p-8 text-center shadow-xl backdrop-blur-sm sm:p-12">
+          <div className="flex justify-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
+              <User className="h-12 w-12 text-white" />
             </div>
           </div>
-          <div className="space-y-2">
-            {/*<Label htmlFor="email" className="text-gray-300">Email</Label>*/}
-            <div className="relative">
-              {/*<Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400"
-                required
-              />*/}
-              <Mail
-                className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400"
-                size={18}
-              />
-            </div>
+          <h1 className="bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+            Your Account
+          </h1>
+          <p className="text-xl text-gray-700 dark:text-gray-300">
+            Manage your SCANUEV account settings and preferences
+          </p>
+
+          <div className="flex justify-center gap-4">
+            <GradientButton>Update Profile</GradientButton>
+            <GradientButton className="bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700">
+              Sign Out
+            </GradientButton>
           </div>
-          <div className="space-y-2">
-            {/*<Label htmlFor="password" className="text-gray-300">New Password (leave blank to keep current)</Label>*/}
-            <div className="relative">
-              {/*<Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400"
-              />*/}
-              <Key
-                className="absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400"
-                size={18}
-              />
-            </div>
-          </div>
-          {/*<Button type="submit" className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-            Save Changes <Save className="ml-2" size={18} />
-          </Button>*/}
-        </form>
-      </motion.div>
-    </div>
+        </div>
+      </main>
+    </WavyBackground>
   );
 }

@@ -1,9 +1,8 @@
-import ChatInterface from "../chat-interface";
+export const dynamic = "force-dynamic";
+export const runtime = "edge";
+
+import { ChatInterfaceClient } from "@/components/ChatInterfaceClient";
 
 export default function ChatPage() {
-  return (
-    <main className="h-screen overflow-hidden">
-      <ChatInterface />
-    </main>
-  );
+  return <ChatInterfaceClient />;
 }

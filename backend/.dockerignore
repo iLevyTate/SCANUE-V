@@ -13,3 +13,4 @@ htmlcov
 Dockerfile
 .dockerignore
 .git
+.env

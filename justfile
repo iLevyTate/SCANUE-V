@@ -72,6 +72,14 @@
   cd frontend && \
   npm run lint
 
+@frontend-test:
+  cd frontend && \
+  npm run test
+
+@e2e-test:
+  cd frontend && \
+  npm run cypress:run
+
 @docker-up:
   docker compose up --build
 
